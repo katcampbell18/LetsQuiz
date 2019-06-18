@@ -1,0 +1,25 @@
+{% extends 'myapp/index.html' %}
+
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }}">{{ message }}</div>
+{% endfor %}
+{% endif %}
+<div class="progress">
+  <div class="progress-bar" style="width:{{ done_p }}%"></div>
+</div>
+<h1 style="text-align: center"><span class="badge badge-pill badge-secondary">{{ quiz.title }}</span></h1>
+<hr>
+  <h2>{{ques.question_text }}</h2><br>
+  <form method="POST"> {% csrf_token %}
+    {% for choice in ques.choice_set.all %}
+    <h5><input type="radio" name="choices" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+    <label class="form-check-label" for="choice{{ forloop.counter }}">
+      {{ choice.choice_text }}
+    </label></h5>
+    {% endfor %}<br>
+    <button type="submit" class="btn btn-success">Submit</button>
+    <button style="float:right;" type="submit" name="_skip" class="btn btn-success">Skip</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'myapp/index.html' %}
+
+{% block content %}
+  {{ error_message }}
+  <form method="POST" class="post-form">
+    {% csrf_token %}
+    <h1>Register</h1>
+    <table>{{ form.as_table}}</table>
+    <button type="submit" class="btn btn-primary">SignUp</button>
+  <hr>
+  </form>
+  <div class="text-center text-muted">Already have an account?
+    <a href="/home"><button class="btn btn-danger">SignIn</button></a>
+  </div>
+{% endblock %}

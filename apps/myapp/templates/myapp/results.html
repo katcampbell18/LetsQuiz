@@ -1,0 +1,22 @@
+{% extends 'myapp/index.html'%}
+
+{% block content %}
+<a href="{% url 'dashboard' %}">Go to Dashboard</a><hr>
+<h2>Results for Quiz : <span class="badge badge-pill badge-secondary">{{ quiz.title }}</span></h2>
+<br>
+<table class="table">
+  <thead>
+    <th>User</th>
+    <th>Taken On</th>
+    <th>Score</th>
+   </thead>
+   <tbody>
+   	{% for score in scores %}
+   	   	<tr>
+	   		<td>{{ score.user.first_name }}</td>
+	   		<td>{{  score.taken_on }}</td>
+	   		<td>{{ score.score }} / {{ score.quiz.num_of_quest }}</td>
+   		</tr>
+   	{% endfor %}
+   </tbody>
+{% endblock %}
